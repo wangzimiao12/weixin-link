@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>微信安全验证</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 90%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .btn {
+      display: inline-block;
+      background: #07C160;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 15px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 25px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+    .tip {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>微信安全验证</h1>
+    <p>请点击下方按钮完成验证</p>
+    
+    <!-- 关键：用户必须手动点击 -->
+    <a id="trigger" class="btn">立即验证</a>
+    
+    <p class="tip">根据微信要求，此操作需要您的确认</p>
+  </div>
+
+  <script>
+    document.getElementById('trigger').addEventListener('click', function() {
+      // 实际触发微信协议
+      window.location.href = "weixin://bizmsgmenu?msgmenucontent=爸爸&msgmenuid=960";
+      
+      // 备用方案：如果3秒没跳转，显示提示
+      setTimeout(function() {
+        alert("跳转失败！请尝试长按复制此链接到浏览器打开：\n\nweixin://bizmsgmenu?msgmenucontent=爸爸&msgmenuid=960");
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
